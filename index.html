@@ -93,7 +93,6 @@
       position: relative;
       transition: color 0.3s ease;
     }
-    
 
     nav a::after {
       content: '';
@@ -138,7 +137,6 @@
       object-position: center;
       display: block;
       animation: zoomIn 1.2s ease-out;
-          padding-top: 120px;
     }
 
     @keyframes zoomIn {
@@ -165,7 +163,6 @@
 
     .intro-content {
       max-width: 600px;
-      
     }
 
     .intro h2 {
@@ -389,6 +386,51 @@
     .skill-tag.soft:hover {
       background: linear-gradient(135deg, #bae6fd, #c4b5fd);
       border-color: #a78bfa;
+    }
+
+    /* ===== Hobbies Section ===== */
+    .hobbies-section {
+      max-width: 1400px;
+      margin: 8rem auto;
+      padding: 0 3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .hobbies-card {
+      background: white;
+      border-radius: 32px;
+      padding: 4rem 4.5rem;
+      box-shadow: 
+        0 20px 60px rgba(219, 39, 119, 0.08),
+        0 0 0 1px rgba(219, 39, 119, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hobbies-card::before {
+      content: '🎬';
+      position: absolute;
+      top: -20px;
+      right: -20px;
+      font-size: 15rem;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .hobbies-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    .hobbies-text {
+      font-size: 1.2rem;
+      line-height: 1.9;
+      color: var(--dark-soft);
+      opacity: 0.9;
     }
 
     .about::before {
@@ -993,31 +1035,6 @@
         font-size: 2rem;
       }
     }
-    /* Sparkle Styles */
-.sparkle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ffe0f0 0%, #f870b0 80%);
-  border-radius: 50%;
-  opacity: 0.8;
-  pointer-events: none;
-  animation: floatUp 4s linear infinite;
-}
-.sparkle-container {
-  position: relative;   /* Needed so sparkles are positioned inside */
-  width: 100%;
-  height: 1em;         /* Matches the height of your heading */
-  display: inline-block;
-}
-
-
-@keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 0.8; }
-  50% { transform: translateY(-40px) scale(1.2); opacity: 0.6; }
-  100% { transform: translateY(-80px) scale(1); opacity: 0; }
-}
-
   </style>
 </head>
 <body>
@@ -1047,14 +1064,13 @@
   <!-- Hero Section - Split Layout -->
   <section class="hero-section" id="home">
     <div class="hero-image">
-      <img src="/WhatsApp Image 2026-02-07 at 11.01.18 AM.jpeg" alt="Manya Jain" />
+      <img src="WhatsApp Image 2026-02-07 at 11.01.18 AM.jpeg" alt="Manya Jain" />
     </div>
     
     <div class="intro">
       <div class="intro-content">
-       <h2>Hi! I'm <span class="highlight">Manya Jain</span></h2>
-<div class="sparkle-container"></div>
-
+        <h2>Hi! I'm <span class="highlight">Manya Jain</span></h2>
+        <p>
           A student learning tech, building projects, breaking things, and writing about what I learn along the way.
           This is my cozy pink corner on the internet.
         </p>
@@ -1118,6 +1134,17 @@
     </div>
   </section>
 
+  <!-- Hobbies Section -->
+  <section class="hobbies-section">
+    <div class="hobbies-card">
+
+      <h2 class="hobbies-title">When i'm not sleeping or doing an assignment  🎬</h2>
+      <p class="hobbies-text">
+        I unwind by watching movies — mostly chick flicks for emotional support (Mean Girls is basically a personality trait and I believe Legally Blonde is both a movie and a life philosophy), thrillers that keep things interesting, and crime stories because I love a good mystery. I'm equally happy watching a cozy rom-com I've already memorized or getting pulled into a smart whodunit like Knives Out. Somewhere along the way, crime podcasts also became a comfort thing… which says a lot about me, honestly.
+      </p>
+    </div>
+  </section>
+
   <!-- About - Full Width Dark Section -->
   <section class="about" id="about">
     <div class="about-content">
@@ -1149,7 +1176,7 @@
     <div class="resume-box">
       <h3>Want to work together?</h3>
       <p>Check out my resume to see what I've been up to</p>
-      <a href="resume (1).pdf" download class="resume-btn">
+      <a href="resume.pdf" download class="resume-btn">
         <span class="icon">💌</span>
         <span>Download Resume</span>
       </a>
@@ -1180,37 +1207,6 @@
   </footer>
 
   <script>
-    const sparkleContainer = document.querySelector('.sparkle-container');
-
-function createSparkle() {
-  const sparkle = document.createElement('div');
-  sparkle.className = 'sparkle';
-  
-  // Random position around the heading
-  const x = Math.random() * sparkleContainer.offsetWidth;
-  const y = Math.random() * sparkleContainer.offsetHeight;
-  sparkle.style.left = x + 'px';
-  sparkle.style.top = y + 'px';
-  
-  // Random size
-  const size = 4 + Math.random() * 6; // 4px to 10px
-  sparkle.style.width = size + 'px';
-  sparkle.style.height = size + 'px';
-  
-  // Random animation duration and delay
-  sparkle.style.animationDuration = 3 + Math.random() * 2 + 's';
-  sparkle.style.animationDelay = Math.random() * 2 + 's';
-  
-  sparkleContainer.appendChild(sparkle);
-  
-  setTimeout(() => {
-    sparkle.remove();
-  }, 5000); // Remove after animation
-}
-
-// Generate sparkles periodically
-setInterval(createSparkle, 300);
-
     // ===== Cursor Trail Effect =====
     const createCursorTrail = () => {
       const trails = [];
