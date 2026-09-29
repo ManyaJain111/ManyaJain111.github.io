@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title>Loading</title>
+  <title>Manya Jain</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -319,6 +319,13 @@
     }
 
     /* projects */
+    .sub {
+      margin: 3.5rem 0 1rem;
+      padding-bottom: .7rem;
+      box-shadow: 0 1px 0 var(--pink);
+      color: var(--pink)
+    }
+
     .pr {
       position: relative;
       display: grid;
@@ -442,6 +449,31 @@
       box-shadow: inset 0 0 0 1px #3a3136
     }
 
+    /* movies */
+    .films {
+      list-style: none
+    }
+
+    .films li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1.1rem 0;
+      box-shadow: 0 1px 0 var(--hair);
+      font: italic 400 clamp(1.8rem, 4vw, 3rem)/1.1 'Instrument Serif', serif;
+      transition: color .3s, padding-left .5s var(--ease)
+    }
+
+    .films li:hover {
+      color: var(--pink);
+      padding-left: 1.2rem
+    }
+
+    .films li .mono {
+      font-style: normal
+    }
+
     .off {
       font: 400 clamp(3rem, 9vw, 8rem)/1 'Instrument Serif', serif;
       letter-spacing: -.03em
@@ -522,8 +554,8 @@
   <div id="cur"></div>
   <div id="curl"></div>
   <nav><a href="#top" data-mag>Manya Jain</a>
-    <div><a href="#experience" data-mag>Experience</a><a href="#projects" data-mag>Projects</a><a href="#contact"
-        data-mag>Contact</a></div>
+    <div><a href="#experience" data-mag>Experience</a><a href="#projects" data-mag>Projects</a><a href="#movies"
+        data-mag>Movies</a><a href="#contact" data-mag>Contact</a></div>
   </nav>
 
   <main id="top">
@@ -577,31 +609,46 @@
 
     <section id="projects">
       <div class="wrap">
-        <h2 data-split="w" style="margin-bottom:3rem">Selected <i>work</i></h2>
-        <article class="pr rv" data-cursor="build">
-          <div class="mono">Jul 2026<br>C++17 · Linux · TUN/UDP</div>
-          <h3>Noise-based UDP VPN</h3>
-          <p>A VPN from scratch in the WireGuard style: Noise IK handshake with Curve25519, ChaCha20-Poly1305 on every
-            packet, replay protection, automatic rekeying, and an epoll server for many clients.</p>
-        </article>
-        <article class="pr rv" data-cursor="build">
-          <div class="mono">Jun 2026<br>PyTorch · ViT · BioGPT</div>
-          <h3>Radiology report generator</h3>
-          <p>Turns chest X-rays into structured reports. Trained on 224k CheXpert images across 14 diseases and beat the
-            published R2Gen baseline on the Indiana University benchmark.</p>
-        </article>
-        <article class="pr rv" data-cursor="build">
-          <div class="mono">AISEHack 2026<br>PyTorch · OpenCV</div>
-          <h3>Flood detection from satellites</h3>
-          <p>An Attention SAR-UNet with a ResNet34 encoder, CBAM and ASPP that segments flooded areas. Reached 0.483
-            mIoU with Focal+Dice loss and 8x test-time augmentation.</p>
-        </article>
-        <article class="pr rv" data-cursor="build">
-          <div class="mono">Feb 2026<br>C · UNIX</div>
-          <h3>Linux shell</h3>
-          <p>A UNIX shell from scratch with fork/exec, I/O redirection, pipelines, and bash-style job control with
-            signal handling.</p>
-        </article>
+        <h2 data-split="w" style="margin-bottom:1rem">Selected <i>work</i></h2>
+
+        <p class="mono sub rv">Software, systems &amp; ML</p>
+        <div>
+          <article class="pr rv" data-cursor="build">
+            <div class="mono">Jul 2026<br>C++17 · Linux · TUN/UDP</div>
+            <h3>Noise-based UDP VPN</h3>
+            <p>A VPN from scratch in the WireGuard style: Noise IK handshake with Curve25519, ChaCha20-Poly1305 on every
+              packet, replay protection, automatic rekeying, and an epoll server for many clients.</p>
+          </article>
+          <article class="pr rv" data-cursor="build">
+            <div class="mono">Jun 2026<br>PyTorch · ViT · BioGPT</div>
+            <h3>Radiology report generator</h3>
+            <p>Turns chest X-rays into structured reports. Trained on 224k CheXpert images across 14 diseases and beat
+              the
+              published R2Gen baseline on the Indiana University benchmark.</p>
+          </article>
+          <article class="pr rv" data-cursor="build">
+            <div class="mono">AISEHack 2026<br>PyTorch · OpenCV</div>
+            <h3>Flood detection from satellites</h3>
+            <p>An Attention SAR-UNet with a ResNet34 encoder, CBAM and ASPP that segments flooded areas. Reached 0.483
+              mIoU with Focal+Dice loss and 8x test-time augmentation.</p>
+          </article>
+          <article class="pr rv" data-cursor="build">
+            <div class="mono">Feb 2026<br>C · UNIX</div>
+            <h3>Linux shell</h3>
+            <p>A UNIX shell from scratch with fork/exec, I/O redirection, pipelines, and bash-style job control with
+              signal handling.</p>
+          </article>
+        </div>
+
+        <p class="mono sub rv">Hardware &amp; ECE</p>
+        <div>
+          <!-- Placeholder: replace with a real hardware project (copy any <article> above as a template) -->
+          <article class="pr rv" data-cursor="build">
+            <div class="mono">Month Year<br>Verilog · FPGA</div>
+            <h3>Your hardware project</h3>
+            <p>Replace this with a RISC-V core, an FPGA build, or an NGSPICE / Magic design.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -638,6 +685,13 @@
       </div>
     </section>
 
+    <section id="movies">
+      <div class="wrap">
+        <h2 data-split="w" style="margin-bottom:2rem">Watched <i>&amp; loved</i></h2>
+        <ol class="films rv" id="films"></ol>
+      </div>
+    </section>
+
     <section>
       <div class="wrap">
         <p class="mono rv" style="margin-bottom:1rem">Off duty</p>
@@ -668,6 +722,17 @@
       const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
       const rows = [["Python", "C / C++", "JavaScript", "Verilog", "Applied cryptography", "Network protocol design", "Linux systems programming", "Process & signal handling"], ["PyTorch", "HuggingFace", "NumPy", "Pandas", "Scikit-learn", "XGBoost", "LightGBM", "CatBoost", "Computer vision", "VLMs", "NLP & LLMs", "RISC-V ISA", "MATLAB", "Magic", "NGSPICE", "FPGA"]];
       ["#m1 .mq-in", "#m2 .mq-in"].forEach((s, i) => { const el = $(s);[0, 1].forEach(k => rows[i].forEach(t => { const sp = document.createElement('span'); sp.textContent = t; if (k) sp.setAttribute('aria-hidden', 'true'); el.appendChild(sp) })) });
+
+      // movies: add a title here; the list sorts itself Z to A
+      const films = ["When Life Gives You Tangerines", "Sinners", "Sacred Games", "Tarzan: The Wonder Car", "Hum Dil De Chuke Sanam", "Deadpool & Wolverine"];
+      films.sort((a, b) => b.localeCompare(a)).forEach((f, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = '<span></span><span class="mono"></span>';
+        li.children[0].textContent = f;
+        li.children[1].textContent = String(i + 1).padStart(2, '0');
+        $('#films').appendChild(li);
+      });
+
       const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches, fine = matchMedia('(pointer:fine)').matches;
       if (!window.gsap || !window.ScrollTrigger || reduce) return;
       gsap.registerPlugin(ScrollTrigger, CustomEase);
