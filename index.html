@@ -903,48 +903,149 @@
       background: linear-gradient(#5b5358, #cfc6c9)
     }
 
-    .disco-ball {
+    .disco-cap {
+      width: 16px;
+      height: 9px;
+      border-radius: 4px 4px 1px 1px;
+      background: linear-gradient(90deg, #7d7583, #f1ebf3, #7d7583);
+      position: relative;
+      z-index: 2
+    }
+
+    .disco-wrap {
+      position: relative;
       width: 110px;
       height: 110px;
-      border-radius: 50%;
-      position: relative;
-      overflow: hidden;
-      background: radial-gradient(circle at 32% 28%, #fff 0, #efe9ff 7%, #b4adcc 28%, #565070 62%, #1b1826 100%);
-      box-shadow: 0 0 36px rgba(255, 61, 139, .6), 0 0 90px rgba(150, 110, 255, .35)
+      margin-top: -3px;
+      perspective: 520px
     }
 
-    .disco-ball::before {
+    #discoBallLight {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 200px;
+      height: 200px;
+      margin: -100px 0 0 -100px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 61, 139, .5) 0, rgba(180, 110, 255, .2) 40%, transparent 70%);
+      animation: disco-halo 2.4s ease-in-out infinite alternate
+    }
+
+    #discoBall {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 0;
+      transform-style: preserve-3d;
+      animation: ball-spin 9s linear infinite
+    }
+
+    #discoBallMiddle {
+      position: absolute;
+      left: -47px;
+      top: -47px;
+      width: 94px;
+      height: 94px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 36% 30%, #7d7488 0, #2b2530 45%, #0d0b10 100%);
+      animation: ball-unspin 9s linear infinite
+    }
+
+    .square {
+      position: absolute;
+      left: 0;
+      top: 0;
+      transform-style: preserve-3d
+    }
+
+    #disco:not(.on) #discoBall,
+    #disco:not(.on) #discoBallMiddle,
+    #disco:not(.on) #discoBallLight,
+    #disco:not(.on) .square>div,
+    #disco:not(.on) .disco-wrap::before,
+    #disco:not(.on) .disco-wrap::after {
+      animation-play-state: paused !important
+    }
+
+    .disco-wrap::before,
+    .disco-wrap::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(10, 8, 16, .55) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(10, 8, 16, .55) 1.5px, transparent 1.5px);
-      background-size: 13px 13px;
-      animation: disco-spin 1.8s linear infinite
+      width: 22px;
+      height: 22px;
+      background: #fff;
+      clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+      filter: drop-shadow(0 0 6px #fff);
+      animation: disco-twinkle 1.6s ease-in-out infinite;
+      opacity: 0
     }
 
-    .disco-ball::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle at 70% 75%, rgba(0, 0, 0, .55), transparent 55%), conic-gradient(rgba(255, 61, 139, .4), rgba(80, 220, 255, .35), rgba(255, 215, 0, .35), rgba(180, 110, 255, .4), rgba(255, 61, 139, .4));
-      mix-blend-mode: overlay;
-      animation: disco-hue 3s linear infinite
+    .disco-wrap::before {
+      top: 4px;
+      right: -12px
     }
 
-    @keyframes disco-spin {
+    .disco-wrap::after {
+      bottom: 16px;
+      left: -14px;
+      width: 16px;
+      height: 16px;
+      animation-delay: .8s
+    }
+
+    @keyframes ball-spin {
       from {
-        background-position: 0 0, 0 0
+        transform: rotateX(-12deg) rotateY(0)
       }
 
       to {
-        background-position: 13px 0, 13px 0
+        transform: rotateX(-12deg) rotateY(360deg)
       }
     }
 
-    @keyframes disco-hue {
+    @keyframes ball-unspin {
+      from {
+        transform: rotateY(0) rotateX(12deg) translateZ(-2px)
+      }
+
       to {
-        transform: rotate(360deg)
+        transform: rotateY(-360deg) rotateX(12deg) translateZ(-2px)
+      }
+    }
+
+    @keyframes reflect {
+
+      0%,
+      60%,
+      100% {
+        filter: brightness(1)
+      }
+
+      80% {
+        filter: brightness(2.4)
+      }
+    }
+
+    @keyframes disco-halo {
+      to {
+        opacity: .55;
+        transform: scale(1.15)
+      }
+    }
+
+    @keyframes disco-twinkle {
+
+      0%,
+      100% {
+        opacity: 0;
+        transform: scale(.3) rotate(0)
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1) rotate(45deg)
       }
     }
 
@@ -998,7 +1099,13 @@
   <div id="disco" aria-hidden="true">
     <div class="disco-swing">
       <div class="disco-string"></div>
-      <div class="disco-ball"></div>
+      <div class="disco-cap"></div>
+      <div class="disco-wrap">
+        <div id="discoBallLight"></div>
+        <div id="discoBall">
+          <div id="discoBallMiddle"></div>
+        </div>
+      </div>
     </div>
   </div>
   <canvas id="fairy-canvas"></canvas>
@@ -1042,9 +1149,7 @@
           <h2 data-split="w">Experience</h2>
           <div class="edu rv">
             <h3>B.Tech, Electronics &amp; Communication</h3>
-            <p class="mono">IIIT Hyderabad · Aug 2024 – May 2028 (expected)</p>
-            <p style="margin-top:.7rem;color:#cfc6c9;font-size:.95rem">Linear Algebra, DSA, Probability &amp; Random
-              Processes, Information Theory.</p>
+            <p class="mono">IIIT Hyderabad · Aug 2024 - Current</p>
           </div>
         </div>
         <div>
@@ -1105,22 +1210,26 @@
           <div class="sub mono" style="margin-top:4rem;"><span>Hardware &amp; ECE</span><span>02 / 04</span></div>
           <div>
             <article class="pr rv" data-cursor="view">
-              <div class="mono">Verilog · RISC-V</div>
+              <div class="mono">Verilog · RISC-V · RTL</div>
               <h3>32-bit RISC-V CPU</h3>
-              <p>A simple, complete 32-bit RISC-V (RV32i Spec) CPU written in Verilog, designing the datapath,
-                implementing the control logic, and simulating CPU core using iverilog.
-              </p>
+              <p>A complete 32-bit RISC-V processor implemented in synthesizable Verilog as a sequential multi-cycle
+                datapath, integrating instruction fetch, decode, register operations, ALU execution, memory access, and
+                control logic.</p>
             </article>
+
             <article class="pr rv" data-cursor="view">
-              <div class="mono">Analog · EMG · Servo</div>
-              <h3>Bicep EMG-controlled servo</h3>
-              <p>EMG signal acquisition on Biceps, driving servo motor actuation, built entirely from analog components.
-                Cost effective solution for motorized prosthetics.</p>
+              <div class="mono">Analog · EMG · Servo · Signal Conditioning</div>
+              <h3>EMG-controlled servo</h3>
+              <p>An analog EMG acquisition and control system that captures low-amplitude muscle
+                signals, and converts them into control signals for servo motor
+                actuation without relying on digital processing.</p>
             </article>
+
             <article class="pr rv" data-cursor="view">
-              <div class="mono">Analog · Audio</div>
+              <div class="mono">Analog · Audio · Discrete BJT</div>
               <h3>5-stage audio amplifier</h3>
-              <p>A five-stage audio amplifier designed and built from discrete analog stages.</p>
+              <p>A five-stage discrete audio amplifier designed for high voltage gain across the 20 Hz–20 kHz audible
+                band, using cascaded transistor stages for signal amplification, biasing, and output power delivery.</p>
             </article>
           </div>
         </div>
@@ -1495,11 +1604,36 @@
         sp.style.cssText = `--c:${c};--t:${7 + i * 1.3}s;--dx:${gsap.utils.random(-25, 25)}vw;--dy:${gsap.utils.random(-20, 20)}vh;left:${gsap.utils.random(0, 80)}%;top:${gsap.utils.random(5, 75)}%;animation-delay:${-i * 1.1}s`;
         lightsEl.appendChild(sp);
       });
+      (function buildBall() {
+        const ball = $('#discoBall'), radius = 50, size = 6.5, prec = 19.55, fuzzy = .001, inc = (Math.PI - fuzzy) / prec;
+        const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+        const frag = document.createDocumentFragment();
+        for (let t = fuzzy; t < Math.PI; t += inc) {
+          const z = radius * Math.cos(t);
+          const ringR = .8 * radius * Math.sin(t);
+          const n = Math.floor(2 * Math.PI * ringR / size);
+          if (n < 1) continue;
+          const angleInc = (Math.PI * 2 - fuzzy) / n;
+          const band = t > 1.3 && t < 1.9;
+          for (let i = angleInc / 2 + fuzzy; i < Math.PI * 2; i += angleInc) {
+            const sq = document.createElement('div'), tile = document.createElement('div');
+            const c = band ? rnd(130, 255) : rnd(110, 190);
+            tile.style.cssText = `width:${size}px;height:${size}px;transform-origin:0 0 0;backface-visibility:hidden;transform:rotate(${i}rad) rotateY(${t}rad);background:${rnd(0, 9) === 0 ? `hsl(330,90%,${rnd(60, 75)}%)` : `rgb(${c},${c},${Math.min(255, c + 12)})`};animation:reflect 2s linear infinite;animation-delay:-${rnd(0, 20) / 10}s`;
+            sq.className = 'square';
+            sq.style.transform = `translate3d(${radius * Math.cos(i) * Math.sin(t)}px,${radius * Math.sin(i) * Math.sin(t)}px,${z}px)`;
+            sq.appendChild(tile);
+            frag.appendChild(sq);
+          }
+        }
+        ball.appendChild(frag);
+      })();
       gsap.set(disco, { yPercent: -120 });
       gsap.fromTo(swing, { rotation: -3, transformOrigin: '50% 0' }, { rotation: 3, duration: 2.4, ease: 'sine.inOut', yoyo: true, repeat: -1 });
       ScrollTrigger.create({
         trigger: '#movies', start: 'top 65%', end: 'bottom 25%', onToggle: self => {
           const on = self.isActive;
+          clearTimeout(disco._t);
+          if (on) disco.classList.add('on'); else disco._t = setTimeout(() => disco.classList.remove('on'), 1100);
           gsap.to(disco, { yPercent: on ? 0 : -120, duration: on ? 1.8 : 1, ease: on ? 'elastic.out(1,.6)' : 'power2.in', overwrite: 'auto' });
           gsap.to(lightsEl, { opacity: on ? 1 : 0, duration: 1.2 });
         }
